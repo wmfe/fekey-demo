@@ -9,37 +9,19 @@
  * @description 引用模板文件
  */
 
-require('nerve_cfecommon:static/utils/vue-ajax.js');
-
-var Index = require('./homepage.vue');
-
 module.exports = {
+    getMockData: function () {
+      $.ajax({
+        url: '/api/manageaccount/list',
+        type: 'get',
+        dataType: 'json',
+        success: (res) => {
+          console.log(res)
+        }
+      })
+    },
 
     init: function(res) {
-        /**
-         * @description 页面所有数据
-         * @type {object}
-         */
-        var app = new Vue({
-          el: '#content',
-          methods: {
-            getMockData: () => {
-              $.ajax({
-                url: '/api/manageaccount/list',
-                type: 'get',
-                dataType: 'json',
-                success: (res) => {
-                  console.log('~~~~~')
-                }
-              })
-            }
-          },
-          components: {
-            Index: Index
-          },
-          created() {
-            this.getMockData()
-          }
-        });
+      this.getMockData()
     }
 };

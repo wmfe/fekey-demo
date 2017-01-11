@@ -5,8 +5,6 @@
 var path = require('path');
 
 fis.require('smarty')(fis);
-fis.require('vue')(fis);
-
 
 /**
  * 设置namespace
